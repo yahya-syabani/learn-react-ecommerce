@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-import Product from "./Product";
+import Product from "./Home/Product";
 
 function Home() {
   return (
@@ -59,5 +59,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
