@@ -22,8 +22,8 @@ function Header() {
 
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_optionLineOne">Hello Guest</span>
-          <span className="header_optionLineTwo">Sign In</span>
+          <span className="header_optionLineOne">Hello </span>
+          <span className="header_optionLineTwo">Adiva</span>
         </div>
 
         <div className="header_option">
@@ -35,9 +35,9 @@ function Header() {
           <span className="header_optionLineOne">Your</span>
           <span className="header_optionLineTwo">Account</span>
         </div>
-        <Link to="/checkout">
+        <Link style={{ textDecoration: "inherit" }} to="/checkout">
           <div className="header_optionBasket">
-            <ShoppingBasketIcon />
+            <ShoppingBasketIcon fontSize="large" />
             <span className="header_optionLineTwo header_basketCount">
               {basket?.length}
             </span>

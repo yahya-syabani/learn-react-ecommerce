@@ -34,6 +34,7 @@
 
 .product_price {
   margin-top: 5px;
+  display: flex;
 }
 
 .product_info {
