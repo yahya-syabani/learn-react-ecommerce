@@ -16,7 +16,6 @@ function Header() {
           className="header_logo"
           src={mainLogo}
           alt="Yahya Syabani Ecommerce"
-          onClick={() => {}}
         />
       </Link>
 
