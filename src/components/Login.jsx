@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import "./Login.css";
 import mainLogo from "../assets/Logo.png";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../adapter/firebase";
 
 function Login() {
+  const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const signIn = (e) => {
     e.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        history("/");
+      })
+      .catch((error) => alert(error.message));
   };
 
   const register = (e) => {
@@ -19,7 +27,9 @@ function Login() {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         // it successfully created a new user with email and password
-        console.log(auth);
+        if (auth) {
+          history("/");
+        }
       })
       .catch((error) => alert(error.message));
   };
@@ -27,7 +37,7 @@ function Login() {
   return (
     <div className="login">
       <Link to="/">
-        <img className="login_logo" src={mainLogo} />
+        <img className="login_logo" src={mainLogo} alt="main logo" />
       </Link>
 
       <div className="login_container">
@@ -58,7 +68,7 @@ function Login() {
           Interest-Based Ads Notice.
         </p>
 
-        <button className="login_registerButton">
+        <button onClick={register} className="login_registerButton">
           Create your Amazon Account
         </button>
       </div>

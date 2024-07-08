@@ -13,16 +13,19 @@
 .checkout_title {
   margin-right: 10px;
   padding: 10px;
-  background-color: #f3f3f3;
-  border: 1px solid #dddddd;
-  border-radius: 20px;
-  padding: 15px;
+  border-bottom: 1px solid lightgray;
 }
 
 .checkout_left {
   display: flex;
   flex-direction: column;
   margin-right: 30px;
+}
+
+.checkout_right {
+  display: flex;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .subtotal {

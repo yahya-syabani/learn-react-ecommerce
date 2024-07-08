@@ -40,6 +40,12 @@ const reducer = (state, action) => {
         ...state,
         basket: [],
       };
+
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
   }
 };
 

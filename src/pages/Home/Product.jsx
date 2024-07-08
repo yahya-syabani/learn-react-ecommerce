@@ -5,8 +5,6 @@ import { useStateValue } from "../../stores/StateProvider";
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
 
-  console.log("Product in the Basket", basket);
-
   const addToBasket = () => {
     // dispacth the item into the data layer
     dispatch({
@@ -23,11 +21,11 @@ function Product({ id, title, image, price, rating }) {
   return (
     <div className="product">
       <div className="product_info">
-        <p>{title}</p>
-        <p className="product_price">
-          <p>$</p>
+        <span>{title}</span>
+        <span className="product_price">
+          <span>$</span>
           <strong> {price}</strong>
-        </p>
+        </span>
         <div className="product_rating">
           {Array(rating)
             .fill()
