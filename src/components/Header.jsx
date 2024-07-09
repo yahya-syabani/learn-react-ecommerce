@@ -29,7 +29,9 @@ function Header() {
       <div className="header_nav">
         <Link style={{ textDecoration: "inherit" }} to={!user && "/login"}>
           <div onClick={handleAuthenticaton} className="header_option">
-            <span className="header_optionLineOne">Hello </span>
+            <span className="header_optionLineOne">
+              Hello {!user ? "Guest" : user.email}{" "}
+            </span>
             <span className="header_optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
