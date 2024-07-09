@@ -10,6 +10,11 @@
   margin-bottom: 10px;
 }
 
+.checkout_username {
+  padding-left: 10px;
+  margin-bottom: -5px;
+}
+
 .checkout_title {
   margin-right: 10px;
   padding: 10px;
