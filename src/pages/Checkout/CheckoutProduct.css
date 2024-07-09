@@ -14,7 +14,7 @@
   width: 170px;
   height: 30px;
   border: 2px solid;
-  margin-top: 10px;
+  margin-top: 5px;
   color: white;
   border-radius: 20px;
 }
@@ -37,7 +37,10 @@
 .checkoutProduct_title {
   font-size: 17px;
   font-weight: 800;
+  margin-bottom: 5px;
 }
 .checkoutProduct_price {
   display: flex;
+  font-size: 20px;
+  padding-left: 2px;
 }

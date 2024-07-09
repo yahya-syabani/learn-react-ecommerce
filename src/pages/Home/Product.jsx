@@ -2,6 +2,7 @@ import React from "react";
 import "./Product.css";
 import { useStateValue } from "../../stores/StateProvider";
 import { motion } from "framer-motion";
+import { Rating } from "@mui/material";
 
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -26,23 +27,26 @@ function Product({ id, title, image, price, rating }) {
       transition={{ type: "spring" }}
     >
       <div className="product_info">
-        <span>{title}</span>
+        <div className="product_title">{title}</div>
+        <Rating name="read-only" value={rating} readOnly />
         <span className="product_price">
           <span>$</span>
           <strong> {price}</strong>
         </span>
-        <div className="product_rating">
+        {/* <div className="product_rating">
           {Array(rating)
             .fill()
             .map((_, i) => (
               <p>🌟</p>
             ))}
-        </div>
+        </div> */}
       </div>
 
       <img src={image} alt="" />
 
-      <button onClick={addToBasket}>Add to Basket</button>
+      <motion.button whileTap={{ scale: 0.8 }} onClick={addToBasket}>
+        Add to Basket
+      </motion.button>
     </motion.div>
   );
 }

@@ -26,18 +26,18 @@ function Header() {
         />
       </Link>
 
-      <div className="header_nav">
-        <Link style={{ textDecoration: "inherit" }} to={!user && "/login"}>
-          <div onClick={handleAuthenticaton} className="header_option">
-            <span className="header_optionLineOne">
-              Hello {!user ? "Guest" : user.email}{" "}
-            </span>
-            <span className="header_optionLineTwo">
-              {user ? "Sign Out" : "Sign In"}
-            </span>
-          </div>
-        </Link>
+      <Link style={{ textDecoration: "inherit" }} to={!user && "/login"}>
+        <div onClick={handleAuthenticaton} className="header_signin">
+          <span className="header_optionLineOne">
+            Hello {!user ? "Guest" : user.email}{" "}
+          </span>
+          <span className="header_optionLineTwo">
+            {user ? "Sign Out" : "Sign In"}
+          </span>
+        </div>
+      </Link>
 
+      <div className="header_nav">
         <div className="header_option">
           <span className="header_optionLineOne">Return</span>
           <span className="header_optionLineTwo">& Orders</span>
