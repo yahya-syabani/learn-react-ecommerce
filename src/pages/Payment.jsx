@@ -48,6 +48,7 @@ function Payment() {
           <div className="payment_title">
             <h3>Payment Method</h3>
           </div>
+          <div className="payment_details">{/* test */}</div>
         </div>
       </div>
     </div>
