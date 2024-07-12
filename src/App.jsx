@@ -41,7 +41,15 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
 
-          <Route path="/payment" element={<Payment />} />
+          <Route
+            path="/payment"
+            element={
+              <>
+                <Header />
+                <Payment />
+              </>
+            }
+          />
 
           <Route
             path="/checkout"
@@ -55,6 +63,16 @@ function App() {
 
           <Route
             path="/"
+            element={
+              <>
+                <Header />
+                <Home />
+              </>
+            }
+          />
+
+          <Route
+            path="*"
             element={
               <>
                 <Header />
