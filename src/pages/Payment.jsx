@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import { useStateValue } from "../stores/StateProvider";
 import CheckoutProduct from "./Checkout/CheckoutProduct";
@@ -9,16 +9,36 @@ import { getBasketTotal } from "../stores/reducer";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
-  const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(true);
 
   const stripe = useStripe();
   const elements = useElements();
 
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState("");
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
 
-  const handleSubmit = (event) => {};
+  useEffect(() => {
+    // generate the special stripe secret which allows us to charge a customer
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        // Stripe expects the total in a currencies subunits
+        url: `/payments/create?total=${getBasketTotal(basket)}`,
+      });
+      setClientSecret(response.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [basket]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe;
+  };
 
   const handleChange = (event) => {
     setDisabled(event.empty);
@@ -84,6 +104,7 @@ function Payment() {
                   <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                 </button>
               </div>
+              {error && <div>{error}</div>}
             </form>
           </div>
         </div>
