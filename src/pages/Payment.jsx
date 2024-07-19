@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import { useStateValue } from "../stores/StateProvider";
 import CheckoutProduct from "./Checkout/CheckoutProduct";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../stores/reducer";
-// import axios from "";
+import axios from "../axios";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -23,12 +23,11 @@ function Payment() {
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
-      const response = await {
-        //   tambahin axios
+      const response = await axios({
         method: "post",
         // Stripe expects the total in a currencies subunits
         url: `/payments/create?total=${getBasketTotal(basket)}`,
-      };
+      });
       setClientSecret(response.data.clientSecret);
     };
 
@@ -39,7 +38,19 @@ function Payment() {
     event.preventDefault();
     setProcessing(true);
 
-    const payload = await stripe;
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+
+        Navigate("/orders");
+      });
   };
 
   const handleChange = (event) => {
