@@ -49,7 +49,7 @@ function Payment() {
         setError(null);
         setProcessing(false);
 
-        Navigate("/orders");
+        Navigate("/");
       });
   };
 
