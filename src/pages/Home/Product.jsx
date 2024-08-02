@@ -4,6 +4,8 @@ import { useStateValue } from "../../stores/StateProvider";
 import { motion } from "framer-motion";
 import { Rating } from "@mui/material";
 
+function Cart({ id, title, qty, image, price }) {}
+
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
 

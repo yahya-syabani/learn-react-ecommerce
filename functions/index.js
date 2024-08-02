@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")(
-  "sk_test_51HPvU9DFg5koCdLGeOEiFvwHat4v8eMjX6SY0YCwxPBQBUPhKy1fPVhiSM5cQtgW7QBG9ydQcXnW57TDxVE2f3H000HSfmEQZF"
+  "sk_test_51PbiI9RrAmy3ssPn3IjiIJnZRTyxlk89YPubjTx4eiMF1jVq4G31pGZhyh8utkU1ifrmEUZP0BhflqJH9E7oUWeN00kuJGzt5D"
 );
 
 // API
@@ -15,7 +15,7 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 
 // - API routes
-app.get("/", (request, response) => response.status(200).send("hello world"));
+app.get("/", (request, response) => response.status(200).send("test"));
 
 app.post("/payments/create", async (request, response) => {
   const total = request.query.total;
@@ -27,7 +27,7 @@ app.post("/payments/create", async (request, response) => {
     currency: "usd",
   });
 
-  // OK - Created
+  // OK c - Created
   response.status(201).send({
     clientSecret: paymentIntent.client_secret,
   });
@@ -37,4 +37,4 @@ app.post("/payments/create", async (request, response) => {
 exports.api = functions.https.onRequest(app);
 
 // Example endpoint
-// http://localhost:5001/challenge-4b2b2/us-central1/api
+// http://127.0.0.1:5001/yahya-syabani-ecommerce/us-central1/api

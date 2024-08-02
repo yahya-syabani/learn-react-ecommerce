@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
 import "./Payment.css";
-import { useStateValue } from "../stores/StateProvider";
 import CheckoutProduct from "./Checkout/CheckoutProduct";
-import { Link, Navigate } from "react-router-dom";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
-import { getBasketTotal } from "../stores/reducer";
+import React, { useEffect, useState } from "react";
 import axios from "../axios";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { Link, Navigate } from "react-router-dom";
+import { getBasketTotal } from "../stores/reducer";
+import { useStateValue } from "../stores/StateProvider";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -26,7 +26,7 @@ function Payment() {
       const response = await axios({
         method: "post",
         // Stripe expects the total in a currencies subunits
-        url: `/payments/create?total=${getBasketTotal(basket)}`,
+        url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
       });
       setClientSecret(response.data.clientSecret);
     };
@@ -49,7 +49,7 @@ function Payment() {
         setError(null);
         setProcessing(false);
 
-        Navigate("/");
+        Navigate("/orders");
       });
   };
 
